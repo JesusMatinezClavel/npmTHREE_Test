@@ -2,11 +2,14 @@ import { useEffect, useState } from 'react'
 import './three.css'
 
 import { CInput } from "../../common/c-input/cInput";
+import { Spinner } from "../../common/spinner/spiner";
 
 import * as THREE from 'three'
 import { FBXLoader } from 'three/examples/jsm/loaders/FBXLoader.js';
 import { OrbitControls } from 'three/examples/jsm/controls/OrbitControls'
 import Stats from 'three/examples/jsm/libs/stats.module'
+
+import { Apple } from "lucide-react";
 
 
 
@@ -51,16 +54,18 @@ export const Three = () => {
     const [asset, setAsset] = useState('../../dist/client/models/brick.fbx')
     const [texture, setTexture] = useState(null)
     const [object, setObject] = useState(null)
+    const [loading, setLoading] = useState(false)
 
     const inputHandlerModel = (e) => {
         const file = e.target.files[0];
         setAsset(URL.createObjectURL(file));
     }
-    
+
     const inputHandlerMaterial = (e) => {
         const file = e.target.files[0]
         const texture = textureLoader.load(URL.createObjectURL(file))
-        setTexture(texture)
+        const material = new THREE.MeshBasicMaterial({ map: texture })
+        setTexture(material)
     }
 
 
@@ -69,6 +74,10 @@ export const Three = () => {
             const warning = WebGL.getWebGLErrorMessage();
             document.getElementById('container').appendChild(warning);
             return;
+        }
+        const existingViewport = document.querySelector('.viewport3D canvas');
+        if (existingViewport) {
+            existingViewport.parentElement.removeChild(existingViewport);
         }
         scene3D.add(new THREE.AxesHelper(.4))
         scene3D.add(light)
@@ -124,7 +133,9 @@ export const Three = () => {
                 camera3D.lookAt(objectCenter);
             },
             (xhr) => {
-                console.log((xhr.loaded / xhr.total) * 100 + '% loaded')
+                parseInt(xhr.loaded / xhr.total) === 1
+                    ? setLoading(true)
+                    : setLoading(false)
             },
             (error) => {
                 console.log(error)
@@ -159,11 +170,11 @@ export const Three = () => {
         };
     }, [asset, texture]);
 
-
     return (
         <>
             <div className="three-design">
                 <div className='viewport3D'>
+                    <Spinner className={loading ? "" : "loading"} />
                     <CInput
                         type={'file'}
                         onChange={(e) => inputHandlerModel(e)}

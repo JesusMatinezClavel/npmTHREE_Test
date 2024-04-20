@@ -1,0 +1,23 @@
+.spinner {
+    height: auto;
+    width: auto;
+
+    will-change: filter;
+    transition: filter 300ms;
+
+    color: green;
+}
+
+@keyframes spinner-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+.loading {
+    animation: spinner-spin infinite 2s linear;
+}
