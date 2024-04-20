@@ -1,0 +1,41 @@
+.three-design {
+    height: 100vh;
+    width: 100vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    background-color: rgb(219, 213, 205);
+}
+
+.viewport {
+    border-radius: 2em;
+    box-shadow: 1em 1em 1em 1em grey;
+    &:hover{
+        transform: scale(1.06);
+    }
+}
+
+.viewport3D {
+    height: 70vh;
+    width: 40vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+
+    margin: 1em;
+}
+
+.viewportDrawing {
+    height: 70vh;
+    width: 40vw;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    margin: 1em;
+}

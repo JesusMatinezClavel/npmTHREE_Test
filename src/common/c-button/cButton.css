@@ -1,0 +1,75 @@
+.buttonDesign {
+    height: auto;
+    width: auto;
+
+    margin: .5em;
+    padding: .2em .6em;
+
+    border: .1em solid black;
+    border-radius: .5em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor: pointer;
+
+    background-color: #afb8b9;
+
+    &:hover {
+        background-color: #e4e4e4;
+    }
+    &:active{
+        transform: translateY(.2em);
+    }
+}
+
+.CB-disabledButton {
+    height: auto;
+    width: auto;
+
+    padding: .2em .6em;
+
+    border: .1em solid black;
+    border-radius: .5em;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    cursor:default;
+
+    background-color: #919191;
+
+    &:hover {
+        background-color: #919191;
+    }
+    &:active{
+        transform: translateY(0em);
+    }
+}
+
+.hidden{
+    display: none;
+}
+
+.yesButton {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: .8em;
+    width: 3em;
+
+    background-color: #c6d4e1;
+}
+.noButton {
+
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: .8em;
+    width: 3em;
+
+    background-color: #44749d;
+}
